@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* 🌙 NIGHT BACKGROUND */
+body{
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at top,#2a2f6b,#050818);
+  color:white;
+  overflow:hidden;
+  text-align:center;
+  min-height:100vh;
+}
+
+/* ⭐ STARS */
+.star{
+  position:absolute;
+  width:2px;height:2px;
+  background:white;
+  opacity:.7;
+  animation:twinkle 3s infinite alternate;
+}
+@keyframes twinkle{from{opacity:.2}to{opacity:1}}
+
+/* 💖 FLOATING HEARTS */
+.heart-float{
+  position:absolute;
+  width:14px;height:14px;
+  background:#ff8fb1;
+  transform:rotate(-45deg);
+  animation:floatUp linear infinite;
+  opacity:.6;
+}
+.heart-float:before,.heart-float:after{
+  content:"";
+  position:absolute;
+  width:14px;height:14px;
+  background:#ff8fb1;
+  border-radius:50%;
+}
+.heart-float:before{top:-7px}
+.heart-float:after{left:7px}
+@keyframes floatUp{
+  from{transform:translateY(0) rotate(-45deg)}
+  to{transform:translateY(-800px) rotate(-45deg);opacity:0}
+}
+
+/* 📄 PAGES */
+.page{
+  display:none;
+  height:100vh;width:100vw;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  padding:20px;
+  box-sizing:border-box;
+  opacity:0;
+  transition:opacity 0.8s ease;
+}
+.page.active{
+  display:flex;
+  opacity:1;
+}
+
+/* ✨ TITLES */
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:32px;
+  margin-bottom:20px;
+}
+.subtitle{
+  margin:12px 0 20px;
+  opacity:.85;
+}
+
+/* ❤️ PAGE 1 PERFECT HEART */
+#heart {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+#heart:before,
+#heart:after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 100px;
+  background: red;
+  border-radius: 50px 50px 0 0;
+  top: 0;
+}
+
+#heart:before {
+  left: 60px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+#heart:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+/* Heart fill */
+#fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(to top, pink 0%, transparent 100%);
+  border-radius: 50% 50% 50% 50%;
+  opacity: 0.7;
+  transition: height 0.2s linear;
+}
+
+/* Heart pulse animation */
+@keyframes heartBeat {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+/* 💭 MEMORY CARDS */
+.cards{
+  display:flex;
+  gap:25px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:20px;
+}
+.card{
+  width:120px;height:160px;
+  border-radius:15px;
+  cursor:grab;
+  overflow:hidden;
+  animation:cardFloat 3s ease-in-out infinite;
+}
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  pointer-events:none;
+}
+.card:hover{
+  animation:cardHover 2s infinite alternate;
+  transform:scale(1.1) rotate(2deg);
+}
+@keyframes cardFloat{
+  50%{transform:translateY(-10px)}
+}
+@keyframes cardHover{
+  0%{transform:translateY(0) rotate(0deg)}
+  50%{transform:translateY(-15px) rotate(3deg)}
+  100%{transform:translateY(0) rotate(0deg)}
+}
+
+/* 🎁 GIFT */
+#gift{
+  font-size:90px;
+  animation:giftGlow 2s infinite;
+  cursor:pointer;
+}
+#gift:hover{
+  transform:scale(1.2);
+  filter:drop-shadow(0 0 25px gold);
+}
+@keyframes giftGlow{
+  50%{transform:scale(1.1);filter:drop-shadow(0 0 15px gold)}
+}
+
+/* 🎫 TICKET */
+.ticket{
+  background:linear-gradient(135deg,#ffd700,#ffb700);
+  color:#7a0040;
+  padding:35px 40px;
+  border-radius:25px;
+  animation:ticketFloat 2s ease-in-out infinite;
+}
+.ticket:hover{
+  transform:translateY(-15px) rotate(3deg);
+  box-shadow:0 0 30px rgba(255,215,0,0.8);
+}
+@keyframes ticketFloat{
+  0%,100%{transform:translateY(0) rotate(0deg);}
+  50%{transform:translateY(-10px) rotate(2deg);}
+}
+
+/* 🖼️ PHOTOS */
+.photo{
+  width:260px;height:360px;
+  object-fit:cover;
+  border-radius:20px;
+  animation:cinemaZoom 8s ease-in-out infinite;
+  margin-top:20px;
+}
+@keyframes cinemaZoom{
+  0%{transform:scale(1) rotate(0deg)}
+  50%{transform:scale(1.12) rotate(.5deg)}
+  100%{transform:scale(1)}
+}
+.photo-caption{margin-top:12px}
+
+/* 💍 PROPOSAL - IMPROVED */
+.proposal {
+  position: relative;
+  background: linear-gradient(135deg, #ffe6f0, #ffccd5);
+  color: #e91e63;
+  padding: 40px 35px;
+  border-radius: 30px;
+  box-shadow: 0 0 25px rgba(255, 105, 180, 0.6);
+  animation: fadeIn 1.5s ease forwards;
+  overflow: hidden;
+}
+
+.ring {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: ringHeartbeat 2s infinite, ringMagic 2.5s infinite;
+  cursor: pointer;
+}
+
+@keyframes ringHeartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.15); }
+  50% { transform: scale(1.05); }
+  75% { transform: scale(1.1); }
+}
+
+@keyframes ringMagic{
+  0%{transform:translateY(-30px)}
+  50%{transform:translateY(10px) rotate(10deg);filter:drop-shadow(0 0 15px gold)}
+  100%{transform:translateY(-30px)}
+}
+
+.ring:hover {
+  filter: drop-shadow(0 0 25px gold);
+}
+
+.proposal-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeText 2s forwards 0.5s;
+}
+
+@keyframes fadeText {
+  to { opacity: 1; }
+}
+
+.proposal-btn {
+  background: linear-gradient(45deg, #ff69b4, #ff85c1);
+  border: none;
+  padding: 12px 25px;
+  border-radius: 20px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(255,105,180,0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.proposal-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(255,105,180,0.8);
+}
+
+/* Floating sparkles */
+.proposal-spark {
+  width: 4px;
+  height: 4px;
+  background: #ff8fb1;
+  border-radius: 50%;
+  opacity: 0;
+  position:absolute;
+  animation: sparkleMove 2s linear infinite;
+}
+
+@keyframes sparkleMove {
+  0% { opacity: 0; transform: translateY(0) scale(0.5);}
+  20% { opacity: 1; }
+  50% { transform: translateY(-15px) scale(1);}
+  100% { opacity: 0; transform: translateY(-30px) scale(0.5);}
+}
+
+/* 🎆 FINAL CARD */
+.final-card{
+  background:white;
+  color:#e91e63;
+  padding:30px;
+  border-radius:25px;
+  animation:glowPulse 2s infinite;
+}
+@keyframes glowPulse{
+  50%{box-shadow:0 0 40px rgba(255,105,180,.9)}
+}
+
+/* ✨ FLOATING SPARKLES */
+.spark{
+  position:absolute;
+  width:3px;
+  height:3px;
+  background:white;
+  border-radius:50%;
+  opacity:0;
+  animation:floatSpark linear infinite;
+}
+@keyframes floatSpark{
+  0%{opacity:0; transform:translateY(0) scale(0.5);}
+  20%{opacity:1; transform:translateY(-5px) scale(1);}
+  100%{opacity:0; transform:translateY(-60px) scale(0.3);}
+}
+
+/* ✨ CLICK SPARKLES */
+.click-spark{
+  position:absolute;
+  width:4px;
+  height:4px;
+  background: #ff8fb1;
+  border-radius:50%;
+  opacity:0;
+  pointer-events:none;
+  animation:clickSpark 1s ease-out forwards;
+}
+@keyframes clickSpark{
+  0%{opacity:1; transform:translate(0,0) scale(1);}
+  50%{opacity:1; transform:translate(calc(-10px + 20px * var(--randX)), -30px) scale(1.2);}
+  100%{opacity:0; transform:translate(calc(-15px + 30px * var(--randX)), -60px) scale(0.5);}
+}
+
+/* 🌟 PAGE 1.5 - DAY WE MET HEART */
+#metHeart{
+  font-size:80px;
+  animation:beat 1s infinite;
+  margin:20px 0;
+}
+@keyframes beat{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music" src="love-song.mp3.mpeg"></audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <h1>A little surprise ❤️</h1>
+  <div class="subtitle">Hold the heart gently</div>
+  <div id="heart">
+    <div id="fill"></div>
+  </div>
+</div>
+
+<!-- PAGE 1.5 - DAY WE MET -->
+<div class="page" id="page1_5">
+  <h1>The Day We Met ✨</h1>
+  <div id="metHeart">❤️</div>
+  <div class="subtitle" id="metDate">19th Jan 2024 💕</div>
+  <div class="subtitle" style="font-size:18px;">Tap anywhere to continue</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <h1>Remove the distractions 💭</h1>
+  <div class="cards">
+    <div class="card" draggable="true"><img src="mem1.jpeg" alt="Memory 1"></div>
+    <div class="card" draggable="true"><img src="mem2.jpeg" alt="Memory 2"></div>
+    <div class="card" draggable="true"><img src="mem3.jpeg" alt="Memory 3"></div>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <h1>A Surprise 🎁</h1>
+  <div id="gift">🎁</div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+  <div class="ticket">
+    <h2>Golden Ticket 🎫</h2>
+    <button id="claim">Claim 💛</button>
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+  <img id="photo" class="photo" src="photo1.jpeg.jpeg">
+  <div class="photo-caption" id="caption">Just you ❤️</div>
+  <div class="subtitle">Tap to continue</div>
+</div>
+
+<!-- PAGE 6 - Proposal -->
+<div class="page" id="page6">
+  <div class="proposal">
+    <div class="spark proposal-spark" style="top:10%; left:20%;"></div>
+    <div class="spark proposal-spark" style="top:30%; left:80%;"></div>
+    <div class="spark proposal-spark" style="top:60%; left:50%;"></div>
+    <div class="ring" id="ring">💍</div>
+    <h1 class="proposal-text">Will you be mine forever?</h1>
+    <button class="proposal-btn" onclick="showPage(7)">YES ❤️</button>
+  </div>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="page7">
+  <div class="final-card">
+    <h1>Happy New Year babbyy 🎆</h1>
+    <p>Can't wait for this year with you. Lots of love, laughter, and adventures ahead 💕. Love you! babbuu 😘" ❤️</p>
+  </div>
+</div>
+
+<script>
+/* PAGE FLOW */
+function showPage(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page'+n).classList.add('active');
+}
+
+/* MUSIC */
+const music=document.getElementById("music");
+document.body.onclick=()=>{
+  if(music.paused){music.currentTime=00;music.play();}
+}
+music.ontimeupdate=()=>{if(music.currentTime>=120)music.pause();}
+
+/* HEART FILL WITH REALISTIC HEARTBEAT */
+let level = 0;
+const heart = document.getElementById("heart");
+const fill = document.getElementById("fill");
+heart.onmousedown = () => {
+  let t = setInterval(() => {
+    level += 1;
+    if(level > 100) level = 100;
+    fill.style.height = level + "%";
+    heart.style.transform = `scale(${1 + 0.02 * Math.sin(level/5)})`;
+    if(level >= 100){
+      clearInterval(t);
+      heart.style.transform = 'scale(1)';
+      showPage('1_5'); // NEW PAGE - Day we met
+    }
+  }, 20);
+};
+
+/* PAGE 1.5 CLICK TO CONTINUE */
+document.getElementById('page1_5').onclick = ()=> showPage(2);
+
+/* CARDS */
+let done=0;
+document.querySelectorAll(".card").forEach(c=>{
+  c.ondragend=()=>{
+    c.style.display="none";
+    if(++done===3)showPage(3);
+  };
+});
+
+/* FLOW */
+const gift=document.getElementById("gift");
+const claim=document.getElementById("claim");
+gift.onclick=()=>showPage(4);
+claim.onclick=()=>showPage(5);
+
+/* PHOTOS */
+const photos=[
+ {img:"photo1.jpeg.jpeg",txt:"Just you ❤️"},
+ {img:"photo2.jpeg.jpeg",txt:"Just me 😚"},
+ {img:"photo3.jpeg.jpeg",txt:"Our moments 💕"},
+ {img:"photo4.jpeg.jpeg",txt:"Forever us ♾️"}
+];
+let i=0;
+const page5=document.getElementById("page5");
+const photo=document.getElementById("photo");
+const caption=document.getElementById("caption");
+page5.onclick=()=>{
+  i++;
+  if(i<photos.length){
+    photo.src=photos[i].img;
+    caption.textContent=photos[i].txt;
+  }else showPage(6);
+};
+
+/* STARS + HEARTS */
+for(let i=0;i<70;i++){
+  let s=document.createElement("div");
+  s.className="star";
+  s.style.left=Math.random()*innerWidth+"px";
+  s.style.top=Math.random()*innerHeight+"px";
+  document.body.appendChild(s);
+}
+for(let i=0;i<18;i++){
+  let h=document.createElement("div");
+  h.className="heart-float";
+  h.style.left=Math.random()*innerWidth+"px";
+  h.style.animationDuration=4+Math.random()*4+"s";
+  document.body.appendChild(h);
+}
+</script>
+
+</body>
+</html>
